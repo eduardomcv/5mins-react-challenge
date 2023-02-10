@@ -25,6 +25,15 @@ body {
   color: var(--color-text);
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --color-background: #ffffff;
