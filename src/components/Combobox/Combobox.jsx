@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CloseIcon } from '../../icons/CloseIcon'
+import { Close as CloseIcon } from '../../icons/Close'
 import classes from './Combobox.module.css'
 
 export function Combobox ({ options }) {
