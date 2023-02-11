@@ -19,10 +19,17 @@ export function useQuery (path) {
     }
   }, [path])
 
+  const reset = useCallback(() => {
+    setData(undefined)
+    setError(undefined)
+    setLoading(false)
+  }, [])
+
   return {
     data,
     error,
     loading,
-    query
+    query,
+    reset
   }
 }
