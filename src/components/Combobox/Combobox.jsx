@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CloseIcon } from '../../icons/CloseIcon'
 import classes from './Combobox.module.css'
 
-export function Combobox ({ options = [{ label: 'test' }] }) {
+export function Combobox ({ options }) {
   const [inputValue, setInputValue] = useState('')
 
   const isDropdownOpen = options.length > 0 && inputValue.length > 0
