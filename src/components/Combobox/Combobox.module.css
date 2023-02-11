@@ -35,6 +35,7 @@
   cursor: pointer;
   color: var(--color-text);
   background-color: var(--color-background);
+  transition: background-color ease-out 200ms;
 }
 
 .clearButton:hover {
