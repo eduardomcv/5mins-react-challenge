@@ -5,6 +5,8 @@ import classes from './Combobox.module.css'
 export function Combobox ({ options = [{ label: 'test' }] }) {
   const [inputValue, setInputValue] = useState('')
 
+  const isDropdownOpen = options.length > 0 && inputValue.length > 0
+
   function handleInputChange (event) {
     setInputValue(event.target.value)
   }
@@ -24,7 +26,7 @@ export function Combobox ({ options = [{ label: 'test' }] }) {
         />
         {inputValue.length > 0 && (
           <button
-            type='reset'
+            type='button'
             aria-label='clear'
             className={classes.clearButton}
             onClick={handleClear}
@@ -33,7 +35,7 @@ export function Combobox ({ options = [{ label: 'test' }] }) {
           </button>
         )}
       </div>
-      {options.length > 0 && inputValue.length > 0 && (
+      {isDropdownOpen && (
         <div className={classes.dropdown}>
           <ul>
             {options.map(option => <li key={option.label}>{option.label}</li>)}
