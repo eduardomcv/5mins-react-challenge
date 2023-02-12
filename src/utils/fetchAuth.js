@@ -15,5 +15,9 @@ export async function fetchAuth (path, params) {
     }
   })
 
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`, { response })
+  }
+
   return response.json()
 }
