@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '../../hooks/useQuery'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { getImageURL } from '../../utils/getImageURL'
 import classes from './movie.module.css'
 
@@ -20,34 +21,43 @@ export function Movie () {
     overview,
     tagline,
     genres,
+    budget,
+    revenue,
     backdrop_path: backdropPath,
     poster_path: posterPath,
-    release_date: releaseDate
+    release_date: releaseDate,
+    vote_average: rating
   } = data
 
   const releaseYear = releaseDate ? new Date(releaseDate).getFullYear() : null
   const formattedGenres = genres.map(genre => genre.name).join(', ')
 
   return (
-    <main className={classes.pageContainer}>
+    <div className={classes.pageContainer}>
       <div className={classes.backdropContainer}>
         {backdropPath && <img className={classes.backdrop} src={getImageURL(backdropPath)} alt='movie backdrop' />}
+        <Link className={classes.link} to='/'>
+          &lt; Back to homepage
+        </Link>
       </div>
-      <div className={classes.movieContainer}>
+      <main className={classes.movieContainer}>
         <div>
           {posterPath
             ? <img className={classes.poster} src={getImageURL(posterPath, 'w500')} alt='movie poster' />
-            : <span>No poster available.</span>}
+            : <div className={classes.poster}><span>No poster available.</span></div>}
         </div>
         <div>
-          <h1>{title}{releaseYear ? ` (${releaseYear})` : ''}</h1>
-          <h3 className={classes.tagname}>{tagline}</h3>
+          <h1 className={classes.title}>{title}{releaseYear ? ` (${releaseYear})` : ''}</h1>
+          {tagline && <h3 className={classes.tagline}>{tagline}</h3>}
           <h2>Overview</h2>
           <p>{overview}</p>
-          <h2>Genres</h2>
-          <p>{formattedGenres}</p>
+          <h2>Details</h2>
+          <p><b>Genres:</b> {formattedGenres}</p>
+          <p><b>Rating:</b> {rating.toFixed(1)} out of 10</p>
+          <p><b>Budget:</b> {formatCurrency(budget)}</p>
+          <p><b>Revenue:</b> {formatCurrency(revenue)}</p>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }

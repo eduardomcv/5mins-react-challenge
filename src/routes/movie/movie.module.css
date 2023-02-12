@@ -6,6 +6,7 @@
 }
 
 .backdropContainer {
+  position: relative;
   min-height: 100px;
 }
 
@@ -17,6 +18,13 @@
   mask-composite: intersect;
 }
 
+.link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
 .movieContainer {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -26,9 +34,19 @@
 
 .poster {
   width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.tagname {
+.title {
+  margin-top: 0;
+}
+
+.tagline {
   font-weight: 300; 
   opacity: 0.6;
 }
