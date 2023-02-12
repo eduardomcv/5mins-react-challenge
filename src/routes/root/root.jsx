@@ -27,6 +27,7 @@ export function Root () {
 
   return (
     <main className={classes.pageContainer}>
+      <div className={classes.logo} />
       <Combobox
         onChange={handleComboboxChange}
         options={options}
