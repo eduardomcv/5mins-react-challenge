@@ -8,7 +8,6 @@ export function MovieOption ({ id, posterPath, releaseDate, title }) {
   return (
     <Link to={`/movie/${id}`}>
       <div className={classes.container}>
-
         {posterPath && (
           <img
             className={classes.poster}
