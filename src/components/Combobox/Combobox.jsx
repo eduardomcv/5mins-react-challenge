@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Close as CloseIcon } from '../../icons/Close'
 import classes from './Combobox.module.css'
 
-export function Combobox ({ onChange, options, placeholder, renderOption }) {
+export function Combobox ({ onChange, options, placeholder, renderOption, getOptionKey }) {
   const [inputValue, setInputValue] = useState('')
   const inputRef = useRef()
 
@@ -47,7 +47,11 @@ export function Combobox ({ onChange, options, placeholder, renderOption }) {
       {isDropdownOpen && (
         <div className={classes.dropdown}>
           <ul>
-            {options.map(renderOption)}
+            {options.map((option, index) => (
+              <li key={getOptionKey?.(option) ?? index}>
+                {renderOption(option)}
+              </li>
+            ))}
           </ul>
         </div>
       )}
