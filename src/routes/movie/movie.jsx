@@ -30,7 +30,7 @@ export function Movie () {
   } = data
 
   const releaseYear = releaseDate ? new Date(releaseDate).getFullYear() : null
-  const formattedGenres = genres.map(genre => genre.name).join(', ')
+  const formattedGenres = genres?.map(genre => genre.name).join(', ') ?? null
 
   return (
     <div className={classes.pageContainer}>
@@ -52,10 +52,10 @@ export function Movie () {
           <h2>Overview</h2>
           <p>{overview}</p>
           <h2>Details</h2>
-          <p><b>Genres:</b> {formattedGenres}</p>
-          <p><b>Rating:</b> {rating.toFixed(1)} out of 10</p>
-          <p><b>Budget:</b> {formatCurrency(budget)}</p>
-          <p><b>Revenue:</b> {formatCurrency(revenue)}</p>
+          {formattedGenres && <p><b>Genres:</b> {formattedGenres}</p>}
+          {rating ? <p><b>Rating:</b> {rating.toFixed(1)} out of 10</p> : null}
+          {budget ? <p><b>Budget:</b> {formatCurrency(budget)}</p> : null}
+          {revenue ? <p><b>Revenue:</b> {formatCurrency(revenue)}</p> : null}
         </div>
       </main>
     </div>
