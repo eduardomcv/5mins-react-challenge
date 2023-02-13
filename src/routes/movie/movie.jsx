@@ -7,13 +7,26 @@ import classes from './movie.module.css'
 
 export function Movie () {
   const { id } = useParams()
-  const { data, loading, query } = useQuery(`/movie/${id}`)
+  const { data, loading, query, error } = useQuery(`/movie/${id}`)
 
   useEffect(() => {
     query()
   }, [])
 
+  // Both loading and error states could be better handled,
+  // but I think just having a fallback is good enough for now
   if (loading) return <div>Loading...</div>
+
+  if (error) {
+    return (
+      <h1>
+        {error.cause.status === 404
+          ? 'Movie not found!'
+          : 'Oops! Something went wrong!'}
+      </h1>
+    )
+  }
+
   if (!data) return null
 
   const {
