@@ -6,6 +6,11 @@ This project uses the [TMDB](https://www.themoviedb.org) API for letting a user 
 # Setup
 Run `npm install` and `npm run dev` in the root directory.
 
+# Room for improvement
+- Keyboard navigation for the combobox
+- Better fallbacks for loading/error states
+- Improve movie page structure for missing data
+
 # Screenshots
 
 ### Light mode
